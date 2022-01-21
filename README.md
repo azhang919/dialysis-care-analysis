@@ -1,4 +1,4 @@
-# Difference in Dialysis Patient Care Between Large Chain Clinics and Independent Firms
+# Difference in Dialysis Patient Care Between Chain Clinics and Independent Firms
 
 Last Update: Jan 20, 2022\
 Owners: Alison Zhang, Rahul Narvekar, Alex Ozhakanat, Shivangi Shah, Justin Geletko
