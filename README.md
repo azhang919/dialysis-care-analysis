@@ -1,4 +1,4 @@
-# Dialysis Patient Care at Chain Clinics vs Independent Firms
+# Dialysis Patient Care at Chain vs Independent Clinics
 
 Last Update: Jan 20, 2022\
 Owners: Alison Zhang, Rahul Narvekar, Alex Ozhakanat, Shivangi Shah, Justin Geletko
