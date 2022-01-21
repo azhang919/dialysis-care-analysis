@@ -3,22 +3,42 @@
 Last Update: Jan 20, 2022\
 Owners: Alison Zhang, Rahul Narvekar, Alex Ozhakanat, Shivangi Shah, Justin Geletko
 
-## References
-Inspired by previous research, specifically, “How Acquisitions Affect Firm Behavior and Performance: Evidence from the Dialysis Industry” by Eliason, Heebsh, McDevitt, and Roberts.
-Data downloaded from the National Bureau of Economic Research, Health Cost Report Information System (HCRIS), from 1998 to 2010.
-
 ## Background
+### ESRD & Dialysis
+Kidneys filter waste/toxins out of the blood and produce erythropoietin, a hormone to stimulate red blood cell production. 15% of US adults (i.e. 37 million people) live with End-Stage Renal Disease (ESRD), or chronic kidney failure. In order to treat ESRD, patients must either receive a kidney transplant, or, more commonly, undergo dialysis. The latter option has two forms: 
+1. Hemodialysis - the most common type, where a patient's blood is pumped and filtered back into their body with an artificial kidney machine, and
+2. Peritoneal dialysis - a procedure in which cleaning fluid is pumped through a surgically placed catheter and the patient's inside stomach lining is used as a natural filter
 
+Dialysis treatments are typically done 3 times/week, 3-4 hours each visit. Most ESRD patients also get anemia treatments at dialysis centers, since lack of erythropoietin leads to red blood cell deficiency. These supplementary treatments typically consist of EPO (a erythropoietin-stimulating agent) and either Venofer or Ferrlecit (both iron substitutes and very similar drugs).
+
+### Medicare & the Dialysis Industry
+Medicare is the primary payer for most ESRD patients. Regardless of age, all patients are eligible for coverage after 90 days of their ESRD diagnosis. In 2014, Medicare spent over $3 billion for costs associated with ESRD, accounting for around 1% of the entire federal budget (_Ramanarayanan and Snyder 2014_). While these policies may have changed over time, in 2010, providers were reimbursed a flat rate for each dialysis treatment, up to 3 times/week per patient. Injectable drugs like EPO and Venofer/Ferrlecit would be reimbursed on a fee-for-service basis dependent on the quantity of drug administered.
+
+### Dialysis Chains
+DaVita and Fresenius are the two largest private (for-profit) dialysis chain companies, controlling over 60% of US dialysis facilities and over 90% of industry revenue (_US Renal Data System 2014; Baker 2019_). Advantages of large dialysis chains include lower average costs due to economies of scale, stronger bargaining position with commercial insurance companies (_Pozniak et al. 2010_), as well as national branding and networking.
+
+<br/>
+
+## Data Process
+Data was downloaded from the National Bureau of Economic Research, Health Cost Report Information System (HCRIS), from 1998 to 2010. The merging, cleaning, and analysis code was done in R and can be found in this repository.
+
+<br/>
 
 ## Analysis
 The goal of our analyses was to compare clinics operated by chains with independent clinics to find any discrepancies in costs and behaviors. To accomplish this, we investigated potential differences in three areas: EPO costs and rebates, clinic employee salaries, and non-Medicare sessions.
 
 ### EPO Costs, Net Costs, and Rebates
+<p align="center">
+    <img src="epo_vars.png" alt="EPO costs, net costs, and rebates across large vs small firms"/>
+</p>
 We first set out to run separate linear regressions based on chain and independent firms and regress them for epo_net_cost against all numeric features. We found that EPO cost and EPO rebates are strong significant predictors of EPO net cost based on our regression. This should come as no surprise, as _EPO total cost - rebate_ should give us net cost. From this, we created box plots that visualized the EPO rebates and EPO costs for the different chain categories and the independent clinics. This showed that, on average, EPO rebates and costs were higher for chain clinics than independent ones. However, we also found that, on average, the net costs for chains were lower than independent counterparts by about $34,000. This aligns with previous studies on EPO, which found that dosage more than doubled post-acquisition.
 
 Since Medicare reimbursement for drugs like EPO are determined by quantity administered, firms would be incentivized to increase dosage in their patients, despite medical evidence that excessive EPO increases risk for cardiovascular events. Although we cannot conclusively attribute a causal effect to our findings, our regression does match the research paper's study. Given more granular patient and treatment data, we could better analyze this relationship.
 
 ### Employee Salaries
+<p align="center">
+    <img src="salaries.png" alt="Salaries across large vs small firms"/>
+</p>
 We found that there was a consistent difference between the average salaries of independent clinics compared to chain clinics from 1998 to 2010. Our first graph illustrates this difference, with independent clinics paying higher salaries on average than chain clinics on average each year, even with increases in salaries
 across the board.
 
@@ -108,3 +128,9 @@ Our second graph shows how the chain clinics differ in their average salaries. T
 We used multiple costs variables to look at changes in the number of sessions done through private (non-Medicare) insurance. From our regressions, we can see that the total cost for hemodialysis drugs has a positive relationship with nonmedicare session for chain clinics (coefficient = 2.106e-03), while this relationship became negative for independent clinics (coefficient = -1.871e-03). The same trend can be found for the total 'other' and salary costs for hemodialysis, changing from 1.235e-03 to -5.327e-04 and 5.265e-03 to -1.112e-03, respectively between chain and independent clinics.
 
 In general, large dialysis chains have more market and bargaining power, and are thus able to negotiate higher reimbursement rates from private insurers. Chain firms would then be incentivized move towards non-medicare sessions as their costs increase, in order to receive more reimbursements. In contrast, independent chains are forced to revert to Medicare's flat rates, having less bargaining power. Prior studies and articles touch on the role that Medicare plays in the dialysis industry, and our findings seem to align with these general economic trends.
+
+<br/>
+
+## Additional References
+“How Acquisitions Affect Firm Behavior and Performance: Evidence from the Dialysis Industry” by Eliason, Heebsh, McDevitt, and Roberts.
+
